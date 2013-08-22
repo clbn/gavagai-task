@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,9 +13,36 @@
 
 <body>
 
-<div id="body">
+<div id="body" ng-controller="termController">
   <div class="container">
-    <header><img alt="Gavagai logo" src="./images/logo.png"/></header>
+    <div class="row header">
+      <div class="col-sm-6">
+        <img alt="Gavagai logo" src="./images/logo.png"/>
+      </div>
+      <div class="col-sm-6 header-buttons">
+        <button class="btn btn-primary" ng-click="loadTerms()" ng-disabled="buttonDisabled()">Load associations</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Foreground associations</h3>
+        <p class="empty-list" ng-show="foreTerms.length==0">
+          There are no terms
+        </p>
+        <span ng-repeat="term in foreTerms">
+          <span style="font-size: {{term.weight}}em">{{term.association}}</span>
+        </span>
+      </div>
+      <div class="col-sm-6">
+        <h3>Background associations</h3>
+        <p class="empty-list" ng-show="backTerms.length==0">
+          There are no terms
+        </p>
+        <span ng-repeat="term in backTerms">
+          <span style="font-size: {{term.weight}}em">{{term.word}}</span>
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -24,6 +51,9 @@
     <p class="credits">Developed by <a href="http://creagenics.com/">Alex Olshansky</a>. Logo by <a href="http://www.gavagai.se/">Gavagai</a>.</p>
   </div>
 </footer>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script src="./js/terms.js"></script>
 
 </body>
 </html>

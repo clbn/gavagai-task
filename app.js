@@ -30,7 +30,7 @@ app.get('/ethersource/:resource(findAssociations|findBackgroundAssociations)', f
       userId: config.username,
       customerObserverId: config.customerObserverId,
       timestamp: getCurrentTime(),
-      windowSize: 2, // 2 days
+      windowSize: 3, // 3 days
       maxResults: 30
     },
     findBackgroundAssociations: {
