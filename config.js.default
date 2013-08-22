@@ -1,0 +1,6 @@
+module.exports = {
+  username: "Username", // username for HTTP Basic Authentication (also value for userId parameter)
+  password: "Password", // password for HTTP Basic Authentication
+  apiKey: "SeCrEtApIkEy", // API key of the user
+  customerObserverId: 0 // ID of the customerObserver of interest
+};
