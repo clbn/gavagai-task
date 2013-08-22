@@ -1,0 +1,10 @@
+{
+  "name": "gavagai-task",
+  "scripts": {
+    "start": "app.js"
+  },
+  "dependencies": {
+    "request": "2.27.0",
+    "express": "3.3.5"
+  }
+}
