@@ -1,5 +1,11 @@
 {
   "name": "gavagai-task",
+  "version": "1.0.0",
+  "author": "Alex Olshansky <i@creagenics.com> (http://creagenics.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clbn/gavagai-task.git"
+  },
   "scripts": {
     "start": "app.js"
   },
