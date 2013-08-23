@@ -5,15 +5,12 @@ function termController($scope, $http) {
   $scope.foreLoading = false;
   $scope.backLoading = false;
 
-  $scope.notification = {};
-
   $scope.windowSizes = [1, 2, 3, 7, 14, 30];
   $scope.windowSize = 7;
 
   $scope.loadTerms = function() {
     $scope.foreLoading = true;
     $scope.backLoading = true;
-    $scope.notification = { 'result': 'loading', 'message': 'Loading associations...' };
 
     $http
       .get(
@@ -23,12 +20,10 @@ function termController($scope, $http) {
       )
       .success(function(data) {
         $scope.foreLoading = false;
-        //$scope.notification = { 'result': 'Ok', 'message': 'Associations successfully loaded' };
         $scope.prepareForeTerms(data);
       })
       .error(function(data, status) {
         $scope.foreLoading = false;
-        //$scope.notification = { 'result': 'Error', 'message': 'Can\'t load terms: ' + status };
       });
 
     $http
@@ -38,12 +33,10 @@ function termController($scope, $http) {
       )
       .success(function(data) {
         $scope.backLoading = false;
-        //$scope.notification = { 'result': 'Ok', 'message': 'Associations successfully loaded' };
         $scope.prepareBackTerms(data);
       })
       .error(function(data, status) {
         $scope.backLoading = false;
-        //$scope.notification = { 'result': 'Error', 'message': 'Can\'t load terms: ' + status };
       });
   };
 
