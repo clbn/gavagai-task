@@ -61,12 +61,12 @@ function termController($scope, $http) {
         });
       });
     }
-    $scope.normalizeWeights($scope.foreTerms, 'strength', 0.75, 2);
+    $scope.normalizeWeights($scope.foreTerms, 'strength', 0.75, 1.5);
   };
 
   $scope.prepareBackTerms = function(data) {
     $scope.backTerms = data.ethersourceBackgroundAssociations;
-    $scope.normalizeWeights($scope.backTerms, 'occurrenceCount', 0.75, 2);
+    $scope.normalizeWeights($scope.backTerms, 'occurrenceCount', 0.75, 1.5);
   };
 
   $scope.normalizeWeights = function(array, property, minLimit, maxLimit) {
