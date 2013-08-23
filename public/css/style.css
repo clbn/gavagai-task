@@ -22,6 +22,14 @@
   margin-bottom: 0;
 }
 
+.rabbit {
+  z-index: -1;
+  position: relative;
+  margin-top: -147px;
+  height: 114px;
+  background: url('../images/rabbit.png') no-repeat 100% 0;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 
