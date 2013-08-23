@@ -52,8 +52,8 @@
     <div class="row">
       <div class="col-sm-6">
         <h3>Topical</h3>
-        <p class="empty-list" ng-show="foreTerms.length==0">
-          There are no terms
+        <p class="text-muted" ng-show="foreTerms.length==0">
+          There are no terms yet
         </p>
         <span ng-repeat="topic in foreTerms">
           <span ng-repeat="term in topic">
@@ -63,8 +63,8 @@
       </div>
       <div class="col-sm-6">
         <h3>Background</h3>
-        <p class="empty-list" ng-show="backTerms.length==0">
-          There are no terms
+        <p class="text-muted" ng-show="backTerms.length==0">
+          There are no terms yet
         </p>
         <span ng-repeat="term in backTerms">
           <span class="term-background" style="font-size: {{term.weight}}em">{{term.word}}</span>
