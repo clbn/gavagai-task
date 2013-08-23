@@ -57,14 +57,16 @@ function termController($scope, $http) {
         topics = [topics];
       }
       angular.forEach(topics, function(topic) {
+        var currentTopicTerms = [];
         var terms = topic.associations;
         // API could return in "associations" either one association object or an array of association objects
         if (!angular.isArray(terms)) {
           terms = [terms];
         }
         angular.forEach(terms, function(term) {
-          $scope.foreTerms.push(term);
+          currentTopicTerms.push(term);
         });
+        $scope.foreTerms.push(currentTopicTerms);
       });
     }
     $scope.normalizeWeights($scope.foreTerms, 'strength', 0.75, 1.5);
@@ -78,13 +80,23 @@ function termController($scope, $http) {
   $scope.normalizeWeights = function(array, property, minLimit, maxLimit) {
     var weights = [];
     angular.forEach(array, function(term) {
-      weights.push(term[property]);
+      if (!angular.isArray(term)) {
+        term = [term];
+      }
+      angular.forEach(term, function(term) {
+        weights.push(term[property]);
+      });
     });
     console.log(weights);
     var min = Math.min.apply(null, weights);
     var max = Math.max.apply(null, weights);
     angular.forEach(array, function(term) {
-      term.weight = (term[property] - min) / (max - min) * (maxLimit - minLimit) + minLimit;
+      if (!angular.isArray(term)) {
+        term = [term];
+      }
+      angular.forEach(term, function(term) {
+        term.weight = (term[property] - min) / (max - min) * (maxLimit - minLimit) + minLimit;
+      });
     });
   };
 

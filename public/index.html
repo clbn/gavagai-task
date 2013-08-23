@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="form-group text-right">
+        <div class="form-group">
           <label>&nbsp;</label><br/>
           <button class="btn btn-primary" ng-click="loadTerms()" ng-disabled="buttonDisabled()">Load associations</button>
         </div>
@@ -55,8 +55,10 @@
         <p class="empty-list" ng-show="foreTerms.length==0">
           There are no terms
         </p>
-        <span ng-repeat="term in foreTerms">
-          <span style="font-size: {{term.weight}}em">{{term.association}}</span>
+        <span ng-repeat="topic in foreTerms">
+          <span ng-repeat="term in topic">
+            <span class="term-foreground term{{$index}}" style="font-size: {{term.weight}}em">{{term.association}}<span ng-show="$first && !$last"> &#x2192;</span></span>
+          </span>
         </span>
       </div>
       <div class="col-sm-6">
@@ -65,7 +67,7 @@
           There are no terms
         </p>
         <span ng-repeat="term in backTerms">
-          <span style="font-size: {{term.weight}}em">{{term.word}}</span>
+          <span class="term-background" style="font-size: {{term.weight}}em">{{term.word}}</span>
         </span>
       </div>
     </div>

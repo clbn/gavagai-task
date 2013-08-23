@@ -15,6 +15,25 @@
   margin-top: 12px;
 }
 
+.term-foreground,
+.term-background {
+  border-radius: 3px;
+  padding: 1px 4px;
+  white-space: nowrap;
+}
+.term-foreground {
+  color: #555;
+  background-color: #daf1f8;
+}
+.term0 {
+  color: #204a20;
+  background-color: #afdcaf;
+}
+.term-background {
+  color: #666;
+  background-color: #fbe7cb;
+}
+
 .credits {
   color: #999;
   margin-top: 20px;
