@@ -9,17 +9,6 @@ var app = express();
 app.use(express.compress());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var getCurrentTime = function() {
-  var date = new Date();
-  return date.getUTCFullYear() + '-' +
-    ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
-    ('00' + date.getUTCDate()).slice(-2) + ' ' +
-    ('00' + date.getUTCHours()).slice(-2) + ':' +
-    ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-    ('00' + date.getUTCSeconds()).slice(-2) +
-    ' UTC';
-};
-
 app.get('/ethersource/:resource(findAssociations|findBackgroundAssociations)', function(req, res) {
   var resource = req.params.resource;
   console.log('Get resource: ' + resource + '.');
@@ -29,14 +18,14 @@ app.get('/ethersource/:resource(findAssociations|findBackgroundAssociations)', f
       apiKey: config.apiKey,
       userId: config.username,
       customerObserverId: config.customerObserverId,
-      timestamp: getCurrentTime(),
-      windowSize: 3, // 3 days
+      timestamp: req.query.timestamp,
+      windowSize: req.query.windowSize,
       maxResults: 30
     },
     findBackgroundAssociations: {
       apiKey: config.apiKey,
       customerObserverId: config.customerObserverId,
-      timestamp: getCurrentTime(),
+      timestamp: req.query.timestamp,
       backlogInDays: 365, // 1 year
       maxResults: 30
     }

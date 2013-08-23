@@ -7,6 +7,9 @@ function termController($scope, $http) {
 
   $scope.notification = {};
 
+  $scope.windowSizes = [1, 2, 3, 7, 14, 30];
+  $scope.windowSize = 7;
+
   $scope.loadTerms = function() {
     $scope.foreLoading = true;
     $scope.backLoading = true;
@@ -14,7 +17,9 @@ function termController($scope, $http) {
 
     $http
       .get(
-        './ethersource/findAssociations'
+        './ethersource/findAssociations' +
+          '?timestamp=' + encodeURIComponent($scope.timestamp) +
+          '&windowSize=' + $scope.windowSize
       )
       .success(function(data) {
         $scope.foreLoading = false;
@@ -28,7 +33,8 @@ function termController($scope, $http) {
 
     $http
       .get(
-        './ethersource/findBackgroundAssociations'
+        './ethersource/findBackgroundAssociations' +
+          '?timestamp=' + encodeURIComponent($scope.timestamp)
       )
       .success(function(data) {
         $scope.backLoading = false;
@@ -85,4 +91,17 @@ function termController($scope, $http) {
   $scope.buttonDisabled = function() {
     return $scope.foreLoading || $scope.backLoading;
   };
+
+  $scope.getCurrentTime = function() {
+    var date = new Date();
+    return date.getUTCFullYear() + '-' +
+      ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+      ('00' + date.getUTCDate()).slice(-2) + ' ' +
+      ('00' + date.getUTCHours()).slice(-2) + ':' +
+      ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+      ('00' + date.getUTCSeconds()).slice(-2) +
+      ' UTC';
+  };
+
+  $scope.timestamp = $scope.getCurrentTime();
 }
